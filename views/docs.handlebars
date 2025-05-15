@@ -1,0 +1,371 @@
+<div class="hero">
+    <div class="container">
+        <h1>DevSecOps Pipeline Documentation</h1>
+        <p>Implementation details, best practices, and guides for the DevSecOps pipeline</p>
+    </div>
+</div>
+
+<div class="container">
+    <section class="section">
+        <h2 class="section-title">Pipeline Overview</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-book"></i> Introduction to the DevSecOps Pipeline
+            </div>
+            <div class="card-body">
+                <p>The DevSecOps Pipeline is designed to automate the process of building, testing, scanning for security vulnerabilities, and deploying applications. It integrates security practices into the development process, allowing for early detection and remediation of issues.</p>
+                
+                <h4>Pipeline Stages</h4>
+                <ol>
+                    <li><strong>Build:</strong> Compiles code and prepares build artifacts</li>
+                    <li><strong>Test:</strong> Runs unit and integration tests</li>
+                    <li><strong>Security Scan:</strong> Performs SCA and SAST analysis</li>
+                    <li><strong>Package:</strong> Creates and stores application artifacts</li>
+                    <li><strong>Deploy:</strong> Deploys to the staging environment</li>
+                </ol>
+                
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Automated code integration and build process</li>
+                    <li>Automated unit and integration testing</li>
+                    <li>Software Composition Analysis (SCA) to identify vulnerabilities in dependencies</li>
+                    <li>Static Application Security Testing (SAST) to identify code-level security issues</li>
+                    <li>Automatic artifact creation and storage</li>
+                    <li>Automated deployment to staging environment</li>
+                    <li>Pipeline notifications for key events</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Setup and Configuration</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cogs"></i> Getting Started with the Pipeline
+            </div>
+            <div class="card-body">
+                <h4>Prerequisites</h4>
+                <ul>
+                    <li>GitHub account with repository access</li>
+                    <li>SonarCloud account for SAST scanning</li>
+                    <li>Staging server with SSH access</li>
+                </ul>
+                
+                <h4>GitHub Secrets Configuration</h4>
+                <p>The pipeline requires the following secrets to be configured in the GitHub repository:</p>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">SONAR_TOKEN</td>
+                            <td>Token for SonarCloud authentication</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">STAGING_SSH_KEY</td>
+                            <td>SSH private key for staging server access</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">STAGING_HOST</td>
+                            <td>Hostname or IP of the staging server</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">STAGING_USER</td>
+                            <td>Username for SSH access to staging server</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">NOTIFICATION_WEBHOOK</td>
+                            <td>Webhook URL for notifications (Slack, Teams, etc.)</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Workflow Configuration</h4>
+                <p>The pipeline is defined in <code>.github/workflows/devsecops-pipeline.yml</code> and can be customized for different project types and requirements.</p>
+                
+                <div class="code-block">
+<span class="code-comment"># Example workflow configuration (excerpt)</span>
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  ARTIFACT_NAME: ${{ github.event.repository.name }}
+  ARTIFACT_VERSION: ${{ github.sha }}
+  STAGING_ENV: staging</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Detailed Stage Documentation</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-hammer"></i> Build Stage
+            </div>
+            <div class="card-body">
+                <p>The build stage compiles the application code and prepares it for subsequent stages.</p>
+                
+                <h4>Implementation</h4>
+                <p>The build process is implemented in <code>scripts/build.sh</code>, which detects the application type and executes the appropriate build commands.</p>
+                
+                <div class="code-block">
+<span class="code-comment">#!/bin/bash</span>
+<span class="code-comment"># Script to build the application</span>
+
+set -e  <span class="code-comment"># Exit immediately if a command exits with a non-zero status</span>
+
+echo "Starting application build process..."
+
+<span class="code-comment"># Install Node.js dependencies</span>
+echo "Installing dependencies..."
+npm ci
+
+<span class="code-comment"># Build the application</span>
+echo "Building the application..."
+npm run build</div>
+                
+                <h4>Customization</h4>
+                <p>To customize the build process for different project types, modify the <code>build.sh</code> script to include the appropriate build commands for your application.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-vial"></i> Test Stage
+            </div>
+            <div class="card-body">
+                <p>The test stage runs unit and integration tests to verify the functionality of the application.</p>
+                
+                <h4>Implementation</h4>
+                <p>The testing process is implemented in <code>scripts/test.sh</code>, which runs appropriate test commands based on the application type.</p>
+                
+                <div class="code-block">
+<span class="code-comment">#!/bin/bash</span>
+<span class="code-comment"># Script to run tests for the application</span>
+
+set -e  <span class="code-comment"># Exit immediately if a command exits with a non-zero status</span>
+
+echo "Starting application testing process..."
+
+<span class="code-comment"># Create test results directory if it doesn't exist</span>
+mkdir -p test-reports
+
+<span class="code-comment"># Run unit tests</span>
+echo "Running unit tests..."
+npm test -- --ci --reporters=default --reporters=jest-junit</div>
+                
+                <h4>Test Results</h4>
+                <p>Test results are stored as artifacts in the GitHub Actions workflow and can be downloaded for analysis.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-shield-alt"></i> Security Scan Stage
+            </div>
+            <div class="card-body">
+                <p>The security scan stage performs SCA and SAST analysis to identify security vulnerabilities.</p>
+                
+                <h4>Software Composition Analysis (SCA)</h4>
+                <p>SCA is performed using OWASP Dependency Check, which scans the application's dependencies for known vulnerabilities.</p>
+                
+                <h4>Static Application Security Testing (SAST)</h4>
+                <p>SAST is performed using SonarCloud, which analyzes the application's source code for potential security issues.</p>
+                
+                <h4>Configuration</h4>
+                <p>SonarCloud is configured using <code>sonar-project.properties</code>:</p>
+                
+                <div class="code-block">
+<span class="code-comment"># Required metadata</span>
+sonar.projectKey=demo_devsecops-pipeline
+sonar.organization=demo-organization
+
+<span class="code-comment"># Project information</span>
+sonar.projectName=DevSecOps Pipeline Demo
+sonar.projectVersion=1.0
+
+<span class="code-comment"># Path to source directories</span>
+sonar.sources=src
+sonar.sourceEncoding=UTF-8</div>
+                
+                <h4>False Positive Management</h4>
+                <p>False positives in the SCA scan can be managed using <code>dependency-check-suppressions.xml</code>.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-box"></i> Package Stage
+            </div>
+            <div class="card-body">
+                <p>The package stage creates and stores the application artifact in a repository.</p>
+                
+                <h4>Implementation</h4>
+                <p>For this demo application, we're using Docker to package the application:</p>
+                
+                <div class="code-block">
+<span class="code-comment"># Dockerfile for the application</span>
+FROM node:16-alpine
+
+WORKDIR /app
+
+<span class="code-comment"># Copy package files and install dependencies</span>
+COPY package*.json ./
+RUN npm ci --only=production
+
+<span class="code-comment"># Copy built application files</span>
+COPY src/ ./src/
+
+<span class="code-comment"># Expose the application port</span>
+EXPOSE 5000
+
+<span class="code-comment"># Start the application</span>
+CMD ["node", "src/server.js"]</div>
+                
+                <h4>Artifact Storage</h4>
+                <p>The Docker image is stored in GitHub Container Registry (ghcr.io) with proper versioning.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-rocket"></i> Deploy Stage
+            </div>
+            <div class="card-body">
+                <p>The deploy stage automatically deploys the application artifact to the staging environment.</p>
+                
+                <h4>Implementation</h4>
+                <p>The deployment process is implemented in <code>scripts/deploy.sh</code>, which connects to the staging server via SSH and deploys the Docker container.</p>
+                
+                <div class="code-block">
+<span class="code-comment">#!/bin/bash</span>
+<span class="code-comment"># Script to deploy the application to the staging environment</span>
+
+set -e  <span class="code-comment"># Exit immediately if a command exits with a non-zero status</span>
+
+<span class="code-comment"># Check if required parameters are provided</span>
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <artifact-full-name> <environment>"
+    exit 1
+fi
+
+ARTIFACT_FULL=$1
+ENVIRONMENT=$2
+
+echo "Starting deployment of $ARTIFACT_FULL to $ENVIRONMENT environment..."</div>
+                
+                <h4>Staging Server Requirements</h4>
+                <p>The staging server must have Docker installed and configured to allow the deployment user to run Docker commands.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Best Practices</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-check-circle"></i> DevSecOps Recommendations
+            </div>
+            <div class="card-body">
+                <h4>Security Integration</h4>
+                <ul>
+                    <li>Run security scans early in the pipeline to identify issues quickly</li>
+                    <li>Set appropriate thresholds for security findings to balance security and delivery</li>
+                    <li>Regularly review and update security tool configurations</li>
+                </ul>
+                
+                <h4>Pipeline Efficiency</h4>
+                <ul>
+                    <li>Use caching to speed up build and test processes</li>
+                    <li>Run jobs in parallel when possible</li>
+                    <li>Only run necessary steps based on the changes made</li>
+                </ul>
+                
+                <h4>Deployment Strategy</h4>
+                <ul>
+                    <li>Implement health checks to verify successful deployments</li>
+                    <li>Consider implementing blue-green or canary deployments for production</li>
+                    <li>Have a rollback strategy in case of deployment failures</li>
+                </ul>
+                
+                <h4>Monitoring and Feedback</h4>
+                <ul>
+                    <li>Implement comprehensive notifications for pipeline events</li>
+                    <li>Monitor pipeline performance and optimize as needed</li>
+                    <li>Gather feedback from developers on the pipeline usability</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Troubleshooting</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-bug"></i> Common Issues and Solutions
+            </div>
+            <div class="card-body">
+                <h4>Build Failures</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Dependency Installation Fails</td>
+                            <td>Check for network issues, private dependencies, or incompatible versions</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Compilation Errors</td>
+                            <td>Review the build logs for specific error messages and fix code issues</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Test Failures</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Unit Tests Fail</td>
+                            <td>Examine test output to identify which tests are failing and why</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Integration Tests Fail</td>
+                            <td>Check if services required for integration tests are available and correctly configured</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Security Scan Issues</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">SCA Finds Critical Vulnerabilities</td>
+                            <td>Update dependencies to patched versions or add suppressions with justification</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">SonarCloud Analysis Fails</td>
+                            <td>Check if the SONAR_TOKEN is valid and the project is correctly configured</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Deployment Failures</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">SSH Connection Fails</td>
+                            <td>Verify that STAGING_SSH_KEY, STAGING_HOST, and STAGING_USER are correctly configured</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Docker Issues</td>
+                            <td>Ensure Docker is installed and running on the staging server and the user has appropriate permissions</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,192 @@
+<div class="hero">
+    <div class="container">
+        <h1>Welcome to DevSecOps Pipeline Demo</h1>
+        <p>A comprehensive implementation of automated building, testing, security scanning, and deployment for modern applications</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <a href="/pipeline" class="btn btn-primary"><i class="fas fa-play"></i> Explore Pipeline</a>
+            <a href="/onboarding" class="btn btn-secondary"><i class="fas fa-rocket"></i> Onboard Your Project</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <section class="section">
+        <h2 class="section-title">Pipeline Stages</h2>
+        <div class="pipeline-flow">
+            <div class="pipeline-stage">
+                <div class="stage-icon"><i class="fas fa-hammer"></i></div>
+                <div class="stage-name">Build</div>
+                <div class="stage-description">Automates code compilation and build process</div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-icon"><i class="fas fa-vial"></i></div>
+                <div class="stage-name">Test</div>
+                <div class="stage-description">Runs unit and integration tests</div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="stage-name">Security Scan</div>
+                <div class="stage-description">Performs SCA and SAST analysis</div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-icon"><i class="fas fa-box"></i></div>
+                <div class="stage-name">Package</div>
+                <div class="stage-description">Creates and stores app artifacts</div>
+            </div>
+            <div class="pipeline-stage">
+                <div class="stage-icon"><i class="fas fa-rocket"></i></div>
+                <div class="stage-name">Deploy</div>
+                <div class="stage-description">Deploys to staging environment</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Continuous Integration</h3>
+                    <p class="feature-description">Automatically builds and tests your code every time you commit, ensuring rapid feedback on code quality.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Security Scanning</h3>
+                    <p class="feature-description">Integrates Software Composition Analysis (SCA) and Static Application Security Testing (SAST) to identify vulnerabilities early.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Continuous Deployment</h3>
+                    <p class="feature-description">Automates the deployment process to staging environments, reducing manual effort and errors.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-bell"></i></div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Notifications</h3>
+                    <p class="feature-description">Provides real-time notifications for pipeline events, including build failures and security findings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Latest Deployment</h2>
+        <div class="deployment-info">
+            <h3><i class="fas fa-rocket"></i> Deployment Information</h3>
+            <table class="info-table">
+                <tr>
+                    <td class="info-label">Application:</td>
+                    <td>{{artifact.name}}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Version:</td>
+                    <td>{{artifact.version}}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Environment:</td>
+                    <td>{{artifact.environment}} <span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td class="info-label">Deployed At:</td>
+                    <td>{{artifact.timestamp}}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Status:</td>
+                    <td><span class="status-indicator status-success"></span> Successful</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Dashboard Overview</h2>
+        <div class="dashboard">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-tachometer-alt"></i> Pipeline Metrics</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Average Build Time</span>
+                        <span class="metric-value">2m 35s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Test Coverage</span>
+                        <span class="metric-value">87%</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Security Findings</span>
+                        <span class="metric-value">0 Critical, 2 Medium</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Deployment Success Rate</span>
+                        <span class="metric-value">98.5%</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="dashboard-card">
+                <h3><i class="fas fa-history"></i> Recent Pipelines</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">build-123</span>
+                        <span class="metric-value"><span class="status-indicator status-success"></span> Success</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">build-122</span>
+                        <span class="metric-value"><span class="status-indicator status-success"></span> Success</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">build-121</span>
+                        <span class="metric-value"><span class="status-indicator status-success"></span> Success</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="dashboard-card">
+                <h3><i class="fas fa-bug"></i> Security Issues</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Critical</span>
+                        <span class="metric-value">0</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">High</span>
+                        <span class="metric-value">0</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Medium</span>
+                        <span class="metric-value">2</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Low</span>
+                        <span class="metric-value">5</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Terminal Output</h2>
+        <div class="terminal">
+            <pre><span class="terminal-success">✓</span> Starting deployment of devsecops-demo-app:demo-version-1.0 to staging environment...
+<span class="terminal-success">✓</span> Simulating deployment for demo purposes...
+=============================================================
+📦 DEPLOYMENT SUMMARY
+=============================================================
+📋 Application: devsecops-demo-app
+🏷️ Version: demo-version-1.0
+🌍 Environment: staging
+🕒 Timestamp: {{artifact.timestamp}}
+=============================================================
+<span class="terminal-success">✓</span> Deployment simulation successful!
+💻 The application would now be running at: http://staging-server:5000
+🔍 Health check endpoint: http://staging-server:5000/health
+=============================================================
+<span class="terminal-success">✓</span> Deployment simulation completed successfully.</pre>
+        </div>
+    </section>
+</div>

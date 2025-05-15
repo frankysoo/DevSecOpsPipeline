@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} | DevSecOps Pipeline Demo</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-code-branch"></i></span>
+                <h1>DevSecOps Pipeline</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="/pipeline"><i class="fas fa-project-diagram"></i> Pipeline</a></li>
+                    <li><a href="/docs"><i class="fas fa-book"></i> Documentation</a></li>
+                    <li><a href="/onboarding"><i class="fas fa-rocket"></i> Onboarding</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {{{body}}}
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About DevSecOps Pipeline</h3>
+                    <p>This is a demonstration of a DevSecOps pipeline that automates building, testing, security scanning, and deployment of a pilot application.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/pipeline">Pipeline</a></li>
+                        <li><a href="/docs">Documentation</a></li>
+                        <li><a href="/onboarding">Onboarding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Pipeline Stages</h3>
+                    <ul>
+                        <li><a href="/pipeline#build">Build</a></li>
+                        <li><a href="/pipeline#test">Test</a></li>
+                        <li><a href="/pipeline#security">Security Scan</a></li>
+                        <li><a href="/pipeline#package">Package</a></li>
+                        <li><a href="/pipeline#deploy">Deploy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{currentYear}} DevSecOps Pipeline Demo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

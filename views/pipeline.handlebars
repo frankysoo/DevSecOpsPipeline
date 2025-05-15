@@ -1,0 +1,413 @@
+<div class="hero">
+    <div class="container">
+        <h1>DevSecOps Pipeline</h1>
+        <p>Detailed view of the pipeline stages, configurations, and execution</p>
+    </div>
+</div>
+
+<div class="container">
+    <section class="section">
+        <h2 class="section-title">Pipeline Execution</h2>
+        
+        <div class="pipeline-flow">
+            <div class="pipeline-stage" id="build">
+                <div class="stage-icon"><i class="fas fa-hammer"></i></div>
+                <div class="stage-name">Build</div>
+                <div class="stage-description">Compiles code and prepares build artifacts</div>
+                <div class="card-footer">
+                    <span class="status-indicator status-success"></span> Complete
+                </div>
+            </div>
+            <div class="pipeline-stage" id="test">
+                <div class="stage-icon"><i class="fas fa-vial"></i></div>
+                <div class="stage-name">Test</div>
+                <div class="stage-description">Runs unit and integration tests</div>
+                <div class="card-footer">
+                    <span class="status-indicator status-success"></span> Complete
+                </div>
+            </div>
+            <div class="pipeline-stage" id="security">
+                <div class="stage-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="stage-name">Security Scan</div>
+                <div class="stage-description">Performs SCA and SAST analysis</div>
+                <div class="card-footer">
+                    <span class="status-indicator status-success"></span> Complete
+                </div>
+            </div>
+            <div class="pipeline-stage" id="package">
+                <div class="stage-icon"><i class="fas fa-box"></i></div>
+                <div class="stage-name">Package</div>
+                <div class="stage-description">Creates and stores app artifacts</div>
+                <div class="card-footer">
+                    <span class="status-indicator status-success"></span> Complete
+                </div>
+            </div>
+            <div class="pipeline-stage" id="deploy">
+                <div class="stage-icon"><i class="fas fa-rocket"></i></div>
+                <div class="stage-name">Deploy</div>
+                <div class="stage-description">Deploys to staging environment</div>
+                <div class="card-footer">
+                    <span class="status-indicator status-success"></span> Complete
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Build Stage</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-hammer"></i> Build Process
+            </div>
+            <div class="card-body">
+                <p class="card-text">The build stage checks out the code and compiles it, creating the necessary artifacts for later stages in the pipeline.</p>
+                
+                <h4>Configuration</h4>
+                <div class="code-block">
+<span class="code-comment"># Build job in GitHub Actions workflow</span>
+build:
+  name: Build Application
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Execute build script
+      run: |
+        chmod +x ./scripts/build.sh
+        ./scripts/build.sh
+    
+    - name: Cache build artifacts
+      uses: actions/cache@v3
+      with:
+        path: |
+          ./target
+          ./build
+          ./dist
+        key: ${{ runner.os }}-build-${{ github.sha }}</div>
+                
+                <h4>Terminal Output</h4>
+                <div class="terminal">
+                    <pre>Starting application build process...
+Installing dependencies...
+
+added 66 packages, and audited 67 packages in 2s
+
+14 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Building the application...
+Build completed successfully.
+Creating build info file...</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Test Stage</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-vial"></i> Testing Process
+            </div>
+            <div class="card-body">
+                <p class="card-text">The test stage runs unit and integration tests to verify the functionality of the application.</p>
+                
+                <h4>Configuration</h4>
+                <div class="code-block">
+<span class="code-comment"># Test job in GitHub Actions workflow</span>
+test:
+  name: Run Tests
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Restore cached build artifacts
+      uses: actions/cache@v3
+      with:
+        path: |
+          ./target
+          ./build
+          ./dist
+        key: ${{ runner.os }}-build-${{ github.sha }}
+    
+    - name: Execute test script
+      run: |
+        chmod +x ./scripts/test.sh
+        ./scripts/test.sh</div>
+                
+                <h4>Terminal Output</h4>
+                <div class="terminal">
+                    <pre>Starting application testing process...
+Running unit tests...
+Test 1: Server initialization - PASSED
+Test 2: Health endpoint - PASSED
+Test 3: Homepage rendering - PASSED
+All tests passed successfully.</pre>
+                </div>
+                
+                <h4>Test Results</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Total Tests:</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Passed:</td>
+                            <td>3 <span class="badge badge-success">100%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Failed:</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Skipped:</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Security Scan Stage</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-shield-alt"></i> Security Scanning Process
+            </div>
+            <div class="card-body">
+                <p class="card-text">The security scan stage performs Software Composition Analysis (SCA) and Static Application Security Testing (SAST) to identify vulnerabilities.</p>
+                
+                <h4>Configuration</h4>
+                <div class="code-block">
+<span class="code-comment"># Security scan job in GitHub Actions workflow</span>
+security_scan:
+  name: Security Scanning
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Run OWASP Dependency Check (SCA)
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: '${{ env.ARTIFACT_NAME }}'
+        path: '.'
+        format: 'HTML'
+        out: 'reports/dependency-check'
+        args: >
+          --suppression dependency-check-suppressions.xml
+          --failOnCVSS 7
+    
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}</div>
+                
+                <h4>SCA Results</h4>
+                <div class="deployment-info">
+                    <h3>OWASP Dependency Check Results</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Dependencies Scanned:</td>
+                            <td>67</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Critical:</td>
+                            <td>0 <span class="badge badge-success">Pass</span></td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">High:</td>
+                            <td>0 <span class="badge badge-success">Pass</span></td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Medium:</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Low:</td>
+                            <td>5</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>SAST Results</h4>
+                <div class="deployment-info">
+                    <h3>SonarCloud Analysis Results</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Quality Gate:</td>
+                            <td><span class="badge badge-success">Passed</span></td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Bugs:</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Vulnerabilities:</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Security Hotspots:</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Code Smells:</td>
+                            <td>3</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Package Stage</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-box"></i> Packaging Process
+            </div>
+            <div class="card-body">
+                <p class="card-text">The package stage creates and stores the application artifact (Docker image) in a repository.</p>
+                
+                <h4>Configuration</h4>
+                <div class="code-block">
+<span class="code-comment"># Package job in GitHub Actions workflow</span>
+package:
+  name: Create and Store Artifact
+  needs: [test, security_scan]
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Package application
+      run: |
+        echo "Packaging application with version ${{ env.ARTIFACT_VERSION }}..."
+        docker build -t ${{ env.ARTIFACT_NAME }}:${{ env.ARTIFACT_VERSION }} .
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Push to GitHub Packages
+      run: |
+        echo "Pushing artifact to repository..."
+        docker tag ${{ env.ARTIFACT_NAME }}:${{ env.ARTIFACT_VERSION }} ghcr.io/${{ github.repository_owner }}/${{ env.ARTIFACT_NAME }}:${{ env.ARTIFACT_VERSION }}
+        docker push ghcr.io/${{ github.repository_owner }}/${{ env.ARTIFACT_NAME }}:${{ env.ARTIFACT_VERSION }}</div>
+                
+                <h4>Terminal Output</h4>
+                <div class="terminal">
+                    <pre>Simulating Docker build process...
+Building Docker image: devsecops-demo-app:demo-version-1.0
+Docker image built successfully.</pre>
+                </div>
+                
+                <h4>Artifact Information</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Artifact Name:</td>
+                            <td>devsecops-demo-app</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Version:</td>
+                            <td>demo-version-1.0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Type:</td>
+                            <td>Docker Image</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Repository:</td>
+                            <td>ghcr.io/demo-org/devsecops-demo-app:demo-version-1.0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Deploy Stage</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-rocket"></i> Deployment Process
+            </div>
+            <div class="card-body">
+                <p class="card-text">The deploy stage automatically deploys the application artifact to the staging environment.</p>
+                
+                <h4>Configuration</h4>
+                <div class="code-block">
+<span class="code-comment"># Deploy job in GitHub Actions workflow</span>
+deploy_staging:
+  name: Deploy to Staging
+  needs: package
+  runs-on: ubuntu-latest
+  environment: staging
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Download artifact info
+      uses: actions/download-artifact@v3
+      with:
+        name: artifact-info
+    
+    - name: Deploy to staging
+      run: |
+        chmod +x ./scripts/deploy.sh
+        ARTIFACT_FULL=$(cat artifact_info.txt)
+        ./scripts/deploy.sh "$ARTIFACT_FULL" "${{ env.STAGING_ENV }}"
+      env:
+        STAGING_SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+        STAGING_HOST: ${{ secrets.STAGING_HOST }}
+        STAGING_USER: ${{ secrets.STAGING_USER }}</div>
+                
+                <h4>Terminal Output</h4>
+                <div class="terminal">
+                    <pre>Starting deployment of devsecops-demo-app:demo-version-1.0 to staging environment...
+Simulating deployment for demo purposes...
+=============================================================
+📦 DEPLOYMENT SUMMARY
+=============================================================
+📋 Application: devsecops-demo-app
+🏷️ Version: demo-version-1.0
+🌍 Environment: staging
+🕒 Timestamp: Sat 10 May 2025 08:00:34 PM UTC
+=============================================================
+✅ Deployment simulation successful!
+💻 The application would now be running at: http://staging-server:5000
+🔍 Health check endpoint: http://staging-server:5000/health
+=============================================================
+Deployment simulation completed successfully.</pre>
+                </div>
+                
+                <h4>Notification</h4>
+                <div class="terminal">
+                    <pre>Sending notification: devsecops-demo-app version demo-version-1.0 has been deployed to staging successfully.
+=============================================================
+📬 NOTIFICATION
+=============================================================
+📝 Message: devsecops-demo-app version demo-version-1.0 has been deployed to staging successfully.
+🕒 Timestamp: Sat 10 May 2025 08:00:38 PM UTC
+🔄 Repository: demo-repo
+🔖 Commit: demo-commit
+🔗 Run URL: https://github.com/demo-repo/actions/runs/123456
+=============================================================
+Notification simulation completed successfully.</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

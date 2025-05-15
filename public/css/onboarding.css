@@ -1,0 +1,889 @@
+/* Onboarding-specific styles - Inherits variables from styles.css */
+
+/* Define gradients using main variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+  --secondary-gradient: linear-gradient(135deg, var(--secondary-color) 0%, #117a8b 100%);
+  --success-gradient: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+  --warning-gradient: linear-gradient(135deg, var(--warning-color) 0%, #d39e00 100%);
+  --error-gradient: linear-gradient(135deg, var(--error-color) 0%, #bd2130 100%); /* Use error-color */
+}
+
+.onboarding-layout {
+  background-color: var(--light-color); /* Use main variable */
+  min-height: 100vh;
+  /* Font family is inherited from body in styles.css */
+  color: var(--text-color); /* Use main variable */
+  line-height: 1.6;
+}
+.onboarding-hero {
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  padding: 3.5rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.onboarding-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.15;
+}
+.onboarding-hero h1 {
+  color: white; /* Use white on dark gradient */
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  letter-spacing: -0.5px;
+}
+.onboarding-hero p {
+  color: white; /* Use white on dark gradient */
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0.95;
+  position: relative;
+  line-height: 1.5;
+}
+.onboarding-card {
+  background-color: white; /* Use main variable */
+  border-radius: var(--border-radius); /* Use main variable */
+  box-shadow: var(--box-shadow); /* Use main variable */
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transform: translateY(-50px);
+  border: 1px solid #dee2e6; /* Use specific value */
+}
+.onboarding-card-header {
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  color: white; /* Use white on dark gradient */
+  padding: 1.25rem 1.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.25px;
+}
+.onboarding-card-header i {
+  margin-right: 12px;
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+.onboarding-card-body {
+  padding: 1.75rem;
+}
+/* Guidance alerts for better user understanding */
+.guidance-alert {
+  background-color: var(--light-color); /* Use main variable */
+  border-left: 4px solid var(--primary-color); /* Use main variable */
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius); /* Use main variable */
+  font-size: 0.925rem;
+  color: #6c757d; /* Use specific value */
+}
+.guidance-alert h4 {
+  color: #0056b3; /* Darker primary */
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.guidance-alert h4 i {
+  margin-right: 0.5rem;
+}
+.guidance-alert.info {
+  background-color: rgba(0, 123, 255, 0.1); /* Use main primary color */
+  border-left-color: var(--primary-color); /* Use main variable */
+}
+.guidance-alert p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.guidance-alert p:last-child {
+  margin-bottom: 0;
+}
+.guidance-alert ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+.guidance-alert ul li {
+  margin-bottom: 0.3rem;
+}
+.guidance-alert.warning {
+  background-color: rgba(255, 193, 7, 0.1); /* Use main warning color */
+  border-left-color: var(--warning-color); /* Use main variable */
+}
+.guidance-alert.warning h4 {
+  color: #d39e00; /* Darker warning */
+}
+.guidance-alert.important {
+  background-color: rgba(220, 53, 69, 0.1); /* Use main error color */
+  border-left-color: var(--error-color); /* Use main variable */
+}
+.guidance-alert.important h4 {
+  color: #bd2130; /* Darker error */
+}
+/* Stepper styles */
+.stepper {
+  display: flex;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  padding: 0.75rem 0;
+}
+.stepper::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #dee2e6; /* Use specific value */
+  top: 35px;
+  left: 0;
+  z-index: -1;
+}
+.step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Use specific value */
+  background-color: #dee2e6; /* Use specific value */
+  color: #6c757d; /* Use specific value */
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); /* Keep specific subtle shadow */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.step-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #6c757d; /* Use specific value */
+  transition: all 0.3s ease;
+}
+.step-subtitle {
+  font-size: 0.8rem;
+  color: #adb5bd; /* Use specific value */
+  max-width: 140px;
+  margin: 0 auto;
+  line-height: 1.3;
+}
+.step.active .step-number {
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  color: white; /* Use white */
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25); /* Use main primary color */
+}
+.step.active .step-title {
+  color: #0056b3; /* Darker primary */
+  font-weight: 700;
+}
+.step.completed .step-number {
+  background-image: var(--success-gradient); /* Use defined gradient */
+  color: white; /* Use white */
+}
+.step.completed .step-title {
+  color: #1e7e34; /* Darker success */
+}
+/* Form styles */
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+  animation: fadeInUp 0.4s ease forwards;
+}
+.form-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #dee2e6; /* Use specific value */
+}
+.form-section-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+.form-section h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  color: var(--text-color); /* Use main variable */
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.form-section h3 i {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Keep 50% for circle */
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.form-section-description {
+  font-size: 0.9rem;
+  color: #6c757d; /* Use specific value */
+  margin-bottom: 1.5rem;
+  padding-left: 42px;
+}
+.form-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.75rem;
+}
+.form-col {
+  flex: 1;
+  padding: 0 0.75rem;
+  min-width: 0; /* For flex item text overflow handling */
+}
+.form-col-full {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 0.75rem;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color); /* Use main variable */
+  font-size: 0.925rem;
+}
+.form-group .tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%; /* Keep 50% for circle */
+  background-color: #ced4da; /* Use specific value */
+  color: var(--dark-color); /* Use main variable */
+  font-size: 0.7rem;
+  margin-left: 6px;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+.form-group .tooltip-icon:hover {
+  background-color: var(--primary-color); /* Use main variable */
+  color: white;
+}
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ced4da; /* Use specific value */
+  border-radius: var(--border-radius); /* Use main variable */
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); /* Keep specific subtle shadow */
+  color: var(--text-color); /* Use main variable */
+  background-color: white;
+}
+.form-control:focus {
+  border-color: var(--primary-color); /* Use main variable */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* Use main primary color */
+  outline: none;
+}
+.form-control.is-invalid {
+  border-color: var(--error-color); /* Use main variable */
+  background-color: rgba(220, 53, 69, 0.05); /* Use main error color */
+}
+.form-control::placeholder {
+  color: #adb5bd; /* Use specific value */
+  opacity: 0.8;
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' fill='none'%3E%3Cpath d='M1 1l5 4 5-4' stroke='%236c757d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); /* Adjusted color */
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+}
+.form-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.825rem;
+  color: #6c757d; /* Use specific value */
+}
+.required {
+  color: var(--error-color); /* Use main variable */
+  margin-left: 3px;
+}
+/* Validation message */
+.validation-message {
+  font-size: 0.825rem;
+  color: var(--error-color); /* Use main variable */
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+}
+.validation-message i {
+  font-size: 0.9rem;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+/* Button styling - Use styles from styles.css where possible */
+.step-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+/* Re-declare .btn to override styles.css if needed, or remove if styles.css is sufficient */
+/* Let's assume styles.css .btn is mostly okay, but adjust specifics */
+.onboarding-layout .btn { /* Specificity to override */
+  padding: 0.7rem 1.25rem; /* Keep specific padding */
+  font-size: 0.95rem; /* Keep specific font size */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Keep specific button shadow */
+  display: inline-flex; /* Ensure flex properties */
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius); /* Ensure main border-radius is used */
+}
+.onboarding-layout .btn i {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+/* Override hover effects if needed */
+.onboarding-layout .btn-primary:hover {
+  background-color: #0069d9; /* Darker primary from styles.css */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Match card hover shadow */
+}
+.onboarding-layout .btn-secondary { /* Ensure secondary button uses correct color */
+   background-color: var(--secondary-color);
+   border-color: var(--secondary-color);
+}
+.onboarding-layout .btn-secondary:hover {
+  background-color: #138496; /* Darker secondary */
+  border-color: #117a8b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Match card hover shadow */
+}
+.onboarding-layout .btn-success { /* Ensure success button uses correct color */
+   background-color: var(--success-color);
+   border-color: var(--success-color);
+}
+.onboarding-layout .btn-success:hover {
+  background-color: #218838; /* Darker success */
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Match card hover shadow */
+}
+.onboarding-layout .btn-outline {
+  background-color: transparent;
+  border: 1px solid #ced4da; /* Use specific value */
+  color: #6c757d; /* Use specific value */
+  box-shadow: none;
+}
+.onboarding-layout .btn-outline:hover {
+  border-color: var(--primary-color); /* Use main variable */
+  color: var(--primary-color); /* Use main variable */
+  background-color: rgba(0, 123, 255, 0.05); /* Use main primary color */
+}
+.onboarding-layout .btn-outline i {
+  color: #6c757d; /* Use specific value */
+}
+.onboarding-layout .btn-outline:hover i {
+  color: var(--primary-color); /* Use main variable */
+}
+/* Secrets section */
+.secrets-list {
+  margin-bottom: 1.5rem;
+}
+.secret-item {
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--light-color); /* Use main variable */
+  border-radius: var(--border-radius); /* Use main variable */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); /* Use specific value */
+  transition: all 0.2s ease;
+  border-left: 3px solid var(--primary-color); /* Use main variable */
+}
+.secret-item:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Match card hover shadow */
+  transform: translateY(-2px);
+}
+.secret-name {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background-color: var(--dark-color); /* Use main variable */
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--border-radius); /* Use main variable */
+  margin-right: 1rem;
+  min-width: 180px;
+  display: inline-block;
+  text-align: center;
+}
+.secret-description {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #6c757d; /* Use specific value */
+}
+.additional-secret {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: end;
+}
+.delete-secret-btn {
+  background-color: var(--error-color); /* Use main variable */
+  color: white;
+  border: none;
+  border-radius: var(--border-radius); /* Use main variable */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.delete-secret-btn:hover {
+  background-color: #c82333; /* Darker error */
+  transform: scale(1.05);
+}
+#add-secret {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius); /* Use main variable */
+}
+/* Generated config section */
+.generated-config {
+  display: none;
+}
+.config-card {
+  background-color: white;
+  border-radius: var(--border-radius); /* Use main variable */
+  box-shadow: var(--box-shadow); /* Use main variable */
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border: 1px solid #dee2e6; /* Use specific value */
+}
+.config-card-header {
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  color: white;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+.config-card-header i {
+  margin-right: 0.75rem;
+  font-size: 1rem;
+}
+.config-card-body {
+  padding: 1.5rem;
+}
+.code-block {
+  background-color: var(--dark-color); /* Use main variable */
+  color: var(--light-color); /* Use main variable */
+  padding: 1.25rem;
+  border-radius: var(--border-radius); /* Use main variable */
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border: 1px solid #495057; /* Use specific value */
+  white-space: pre-wrap;
+}
+.copy-btn {
+  background-color: #495057; /* Use specific value */
+  color: white;
+  border: none;
+  border-radius: var(--border-radius); /* Use main variable */
+  padding: 0.6rem 1.1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.copy-btn i {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+.copy-btn:hover {
+  background-color: #343a40; /* Darker gray */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Match card hover shadow */
+}
+.next-steps {
+  counter-reset: step-counter;
+  padding-left: 0;
+  list-style: none;
+}
+.next-steps li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1.5rem;
+  counter-increment: step-counter;
+}
+.next-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background-image: var(--primary-gradient); /* Use defined gradient */
+  color: white;
+  border-radius: 50%; /* Keep 50% for circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.next-steps li strong {
+  color: var(--text-color); /* Use main variable */
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+}
+.next-steps li p {
+  color: #6c757d; /* Use specific value */
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.secrets-checklist {
+  list-style: none;
+  padding-left: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.secrets-checklist li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: #6c757d; /* Use specific value */
+}
+.secrets-checklist li::before {
+  content: '🔑';
+  position: absolute;
+  left: 0;
+}
+.secrets-checklist strong {
+  font-family: 'Courier New', monospace;
+  color: var(--dark-color); /* Use main variable */
+  font-size: 0.925rem;
+}
+/* Manual action callout */
+.manual-action-callout {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background-color: rgba(255, 193, 7, 0.1); /* Use main warning color */
+  border: 1px solid var(--warning-color); /* Use main variable */
+  border-radius: var(--border-radius); /* Use main variable */
+  position: relative;
+}
+.manual-action-callout h4 {
+  color: #d39e00; /* Darker warning */
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.manual-action-callout h4 i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+.manual-action-callout p {
+  color: var(--text-color); /* Use main variable */
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+.manual-action-callout p:last-child {
+  margin-bottom: 0;
+}
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Success page */
+.success-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+.success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Keep 50% for circle */
+  background-image: var(--success-gradient); /* Use defined gradient */
+  color: white;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3); /* Use main success color */
+}
+.success-title {
+  font-size: 1.75rem;
+  color: var(--text-color); /* Use main variable */
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.success-text {
+  font-size: 1.05rem;
+  color: #6c757d; /* Use specific value */
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+/* Responsive styles */
+@media (max-width: 992px) {
+  .stepper {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+  
+  .step {
+    min-width: 150px;
+  }
+  
+  .form-section h3 {
+    font-size: 1.1rem;
+  }
+  
+  .form-row {
+    display: block;
+    margin: 0;
+  }
+  
+  .form-col, .form-col-full {
+    padding: 0;
+  }
+}
+@media (max-width: 768px) {
+  .onboarding-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .onboarding-hero p {
+    font-size: 1rem;
+  }
+  
+  .onboarding-card {
+    transform: translateY(-30px);
+  }
+  
+  .onboarding-card-header {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+  }
+  
+  .onboarding-card-body {
+    padding: 1.25rem;
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .step-title {
+    font-size: 0.875rem;
+  }
+  
+  .step-subtitle {
+    display: none;
+  }
+  
+  .stepper::before {
+    top: 25px;
+  }
+  
+  .secret-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .secret-name {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+  }
+  
+  .additional-secret {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    font-size: 0.875rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .step-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .step-buttons button:first-child {
+    order: 2;
+  }
+  
+  .step-buttons button:last-child {
+    order: 1;
+  }
+}
+/* Animations */
+.animate-in {
+  animation: fadeIn 0.5s ease-in;
+}
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+/* Toast notifications */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: white;
+  border-radius: var(--border-radius); /* Use main variable */
+  box-shadow: var(--box-shadow); /* Use main variable */
+  animation: slideInRight 0.3s forwards;
+  border-left: 4px solid var(--primary-color); /* Use main variable */
+}
+.toast-success {
+  border-left-color: var(--success-color); /* Use main variable */
+}
+.toast-error {
+  border-left-color: var(--error-color); /* Use main variable */
+}
+.toast-warning {
+  border-left-color: var(--warning-color); /* Use main variable */
+}
+.toast-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+.toast-success .toast-icon {
+  color: var(--success-color); /* Use main variable */
+}
+.toast-error .toast-icon {
+  color: var(--error-color); /* Use main variable */
+}
+.toast-warning .toast-icon {
+  color: var(--warning-color); /* Use main variable */
+}
+.toast-info .toast-icon {
+  color: var(--primary-color); /* Use main variable */
+}
+.toast-content {
+  flex: 1;
+}
+.toast-message {
+  color: var(--text-color); /* Use main variable */
+  font-size: 0.9rem;
+  margin: 0;
+}
+.toast-close {
+  background: none;
+  border: none;
+  color: #adb5bd; /* Use specific value */
+  padding: 0;
+  margin-left: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.toast-close:hover {
+  color: var(--dark-color); /* Use main variable */
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.slide-out {
+  animation: slideOutRight 0.3s forwards;
+}

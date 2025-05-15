@@ -1,0 +1,45 @@
+<div class="container error-container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-1 error-code">{{statusCode}}</h1>
+      <h2 class="error-title mb-3">{{title}}</h2>
+      <p class="lead error-message mb-4">{{message}}</p>
+      <a href="/" class="btn btn-primary btn-lg">
+        <i class="fas fa-home"></i> Go to Homepage
+      </a>
+      {{#if errorDetails}}
+        <div class="mt-4 text-start">
+          <h4 class="text-muted">Error Details:</h4>
+          <pre class="error-details-pre bg-light p-3 rounded"><code>{{errorDetails}}</code></pre>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<style>
+.error-container {
+  padding: 2rem;
+}
+.error-code {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--danger-color, #dc3545);
+}
+.error-title {
+  font-size: 2.5rem;
+  color: var(--text-dark, #343a40);
+}
+.error-message {
+  font-size: 1.2rem;
+  color: var(--text-medium, #6c757d);
+}
+.error-details-pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--neutral-200, #e9ecef);
+  font-size: 0.85rem;
+}
+</style>

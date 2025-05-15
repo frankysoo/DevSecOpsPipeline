@@ -1,0 +1,57 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# package-lock.json # It's generally recommended to commit this file
+lerna-debug.log*
+.pnp/
+.pnp.js
+
+# Environment variables
+.env
+.env*.local
+.env*.development
+.env*.test
+.env*.production
+!.env.example
+
+# SQLite database
+*.sqlite
+*.sqlite3
+devsecops_database.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build output
+dist/
+build/
+out/
+
+# Test reports
+coverage/
+test-reports/
+junit.xml
+
+# Dependency Check reports
+reports/dependency-check/
+
+# Artifact info
+artifact_info.txt
+
+# Logs
+logs
+*.log

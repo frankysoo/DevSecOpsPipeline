@@ -1,0 +1,36 @@
+{
+  "name": "devsecops-pipeline-demo",
+  "version": "1.0.0",
+  "description": "A demo application showcasing a DevSecOps pipeline with an onboarding wizard.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "build": "echo \"No build step currently defined for local development. Dockerfile handles build for deployment.\""
+  },
+  "keywords": [
+    "devsecops",
+    "pipeline",
+    "nodejs",
+    "express",
+    "docker",
+    "onboarding"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "sqlite3": "^5.1.7",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.2.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

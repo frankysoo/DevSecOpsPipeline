@@ -1,0 +1,273 @@
+<div class="hero">
+    <div class="container">
+        <h1>DevSecOps Dashboard</h1>
+        <p>Real-time monitoring and metrics for your pipeline</p>
+    </div>
+</div>
+
+<div class="container">
+    <section class="section">
+        <div class="dashboard">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-tachometer-alt"></i> Pipeline Health</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width:98%;"></div>
+                </div>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Overall Status</span>
+                        <span class="metric-value"><span class="badge badge-success">Healthy</span></span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Success Rate</span>
+                        <span class="metric-value">98%</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Avg. Pipeline Duration</span>
+                        <span class="metric-value">5m 47s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Last Run Status</span>
+                        <span class="metric-value"><span class="status-indicator status-success"></span> Success</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3><i class="fas fa-clock"></i> Stage Performance</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Build</span>
+                        <span class="metric-value">2m 35s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Test</span>
+                        <span class="metric-value">1m 12s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Security Scan</span>
+                        <span class="metric-value">3m 45s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Package</span>
+                        <span class="metric-value">1m 24s</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Deploy</span>
+                        <span class="metric-value">0m 56s</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3><i class="fas fa-vial"></i> Test Metrics</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Test Pass Rate</span>
+                        <span class="metric-value">100%</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Code Coverage</span>
+                        <span class="metric-value">87%</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Total Tests</span>
+                        <span class="metric-value">12</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Flaky Tests</span>
+                        <span class="metric-value">0</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3><i class="fas fa-shield-alt"></i> Security Metrics</h3>
+                <ul class="metrics-list">
+                    <li>
+                        <span class="metric-name">Critical Vulnerabilities</span>
+                        <span class="metric-value">0</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">High Vulnerabilities</span>
+                        <span class="metric-value">0</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Medium Vulnerabilities</span>
+                        <span class="metric-value">2</span>
+                    </li>
+                    <li>
+                        <span class="metric-name">Security Hotspots</span>
+                        <span class="metric-value">3</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Recent Pipeline Runs</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-history"></i> Pipeline History
+            </div>
+            <div class="card-body">
+                <table class="info-table">
+                    <tr>
+                        <th>Run ID</th>
+                        <th>Status</th>
+                        <th>Commit</th>
+                        <th>Duration</th>
+                        <th>Started</th>
+                    </tr>
+                    <tr>
+                        <td>build-123</td>
+                        <td><span class="status-indicator status-success"></span> Success</td>
+                        <td>93ac7f2</td>
+                        <td>9m 52s</td>
+                        <td>Today, 8:00PM</td>
+                    </tr>
+                    <tr>
+                        <td>build-122</td>
+                        <td><span class="status-indicator status-success"></span> Success</td>
+                        <td>7bc1d45</td>
+                        <td>8m 37s</td>
+                        <td>Yesterday, 5:23PM</td>
+                    </tr>
+                    <tr>
+                        <td>build-121</td>
+                        <td><span class="status-indicator status-success"></span> Success</td>
+                        <td>f8e6a12</td>
+                        <td>9m 14s</td>
+                        <td>Yesterday, 3:15PM</td>
+                    </tr>
+                    <tr>
+                        <td>build-120</td>
+                        <td><span class="status-indicator status-success"></span> Success</td>
+                        <td>3d9b72c</td>
+                        <td>10m 05s</td>
+                        <td>2 days ago</td>
+                    </tr>
+                    <tr>
+                        <td>build-119</td>
+                        <td><span class="status-indicator status-error"></span> Failed</td>
+                        <td>a57e9f1</td>
+                        <td>3m 22s</td>
+                        <td>2 days ago</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Pipeline Logs</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-terminal"></i> Latest Run Logs
+            </div>
+            <div class="card-body">
+                <div class="terminal pipeline-logs">
+                    <div class="log-line log-line-success">[08:00:14] ✓ Starting application build process...</div>
+                    <div class="log-line">[08:00:15] Installing dependencies...</div>
+                    <div class="log-line">[08:00:18] added 66 packages, and audited 67 packages in 2s</div>
+                    <div class="log-line">[08:00:19] 14 packages are looking for funding</div>
+                    <div class="log-line">[08:00:19] found 0 vulnerabilities</div>
+                    <div class="log-line">[08:00:20] Building the application...</div>
+                    <div class="log-line log-line-success">[08:00:22] ✓ Build completed successfully.</div>
+                    <div class="log-line">[08:00:22] Creating build info file...</div>
+                    <div class="log-line log-line-success">[08:00:24] ✓ Starting application testing process...</div>
+                    <div class="log-line">[08:00:24] Running unit tests...</div>
+                    <div class="log-line log-line-success">[08:00:25] ✓ Test 1: Server initialization - PASSED</div>
+                    <div class="log-line log-line-success">[08:00:25] ✓ Test 2: Health endpoint - PASSED</div>
+                    <div class="log-line log-line-success">[08:00:25] ✓ Test 3: Homepage rendering - PASSED</div>
+                    <div class="log-line log-line-success">[08:00:26] ✓ All tests passed successfully.</div>
+                    <div class="log-line">[08:00:27] Simulating Software Composition Analysis...</div>
+                    <div class="log-line">[08:00:28] Scanning dependencies for vulnerabilities...</div>
+                    <div class="log-line log-line-success">[08:00:30] ✓ No critical vulnerabilities found.</div>
+                    <div class="log-line">[08:00:31] Simulating Static Application Security Testing...</div>
+                    <div class="log-line">[08:00:32] Scanning source code for security issues...</div>
+                    <div class="log-line log-line-success">[08:00:34] ✓ No critical security issues found.</div>
+                    <div class="log-line">[08:00:35] Sending notification: Security scanning completed...</div>
+                    <div class="log-line">[08:00:36] Simulating Docker build process...</div>
+                    <div class="log-line">[08:00:36] Building Docker image: devsecops-demo-app:demo-version-1.0</div>
+                    <div class="log-line log-line-success">[08:00:37] ✓ Docker image built successfully.</div>
+                    <div class="log-line log-line-success">[08:00:38] ✓ Starting deployment of devsecops-demo-app:demo-version-1.0 to staging...</div>
+                    <div class="log-line">[08:00:38] Simulating deployment for demo purposes...</div>
+                    <div class="log-line log-line-success">[08:00:39] ✓ Deployment simulation successful!</div>
+                    <div class="log-line">[08:00:39] The application would now be running at: http://staging-server:5000</div>
+                    <div class="log-line">[08:00:39] Health check endpoint: http://staging-server:5000/health</div>
+                    <div class="log-line log-line-success">[08:00:40] ✓ Deployment simulation completed successfully.</div>
+                    <div class="log-line">[08:00:41] Sending deployment notification...</div>
+                    <div class="log-line log-line-success">[08:00:42] ✓ Notification sent successfully.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Security Findings</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-bug"></i> Vulnerability Summary
+            </div>
+            <div class="card-body">
+                <div class="tags">
+                    <span class="tag tag-security">SCA</span>
+                    <span class="tag tag-security">SAST</span>
+                    <span class="tag tag-security">Dependencies</span>
+                </div>
+                
+                <h4>Medium Severity Findings</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">CVE-2023-XXXX</td>
+                            <td>A potential information disclosure vulnerability in Express.js middleware</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Sonar-MED-01</td>
+                            <td>Secure headers missing in Express.js app configuration</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Deployment Status</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-rocket"></i> Application Deployments
+            </div>
+            <div class="card-body">
+                <h4>Staging Environment</h4>
+                <div class="deployment-info">
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">Status:</td>
+                            <td><span class="status-indicator status-success"></span> Running</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Version:</td>
+                            <td>devsecops-demo-app:demo-version-1.0</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Deployed At:</td>
+                            <td>May 10, 2025 20:00:39 UTC</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Deployment URL:</td>
+                            <td><a href="http://staging-server:5000">http://staging-server:5000</a></td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Health Check:</td>
+                            <td><span class="status-indicator status-success"></span> Healthy</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

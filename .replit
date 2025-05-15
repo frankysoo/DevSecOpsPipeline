@@ -1,0 +1,45 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "DevSecOps Pipeline Demo"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "DevSecOps Demo App"
+
+[[workflows.workflow]]
+name = "DevSecOps Pipeline Demo"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash -c \"cd scripts && chmod +x build.sh test.sh deploy.sh notify.sh && echo 'DevSecOps Pipeline scripts ready to use.' && echo 'This is a demonstration environment for the DevSecOps pipeline implementation.' && echo 'The pipeline includes: build, test, security scan, package, and deployment stages.' && echo 'To manually test scripts, run: ./scripts/build.sh, ./scripts/test.sh, etc.'\""
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "DevSecOps Demo App"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node src/server.js"
+waitForPort = 5000
+
+[deployment]
+run = ["sh", "-c", "bash -c \"cd scripts && chmod +x build.sh test.sh deploy.sh notify.sh && echo 'DevSecOps Pipeline scripts ready to use.' && echo 'This is a demonstration environment for the DevSecOps pipeline implementation.' && echo 'The pipeline includes: build, test, security scan, package, and deployment stages.' && echo 'To manually test scripts, run: ./scripts/build.sh, ./scripts/test.sh, etc.'\""]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
